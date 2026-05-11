@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import {
   LuArrowRight,
   LuArrowLeft,
@@ -108,7 +108,7 @@ const Hero = () => {
     return Math.abs(offset) * velocity;
   };
 
-  const variants = {
+  const variants: Variants = {
     enter: (direction: number) => ({
       x: direction > 0 ? 300 : -300,
       opacity: 0,

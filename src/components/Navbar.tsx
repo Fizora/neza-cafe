@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
 import { LuArrowUpRight, LuMenu, LuX } from "react-icons/lu";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 
 type NavItem = {
   name: string;
@@ -11,10 +11,9 @@ type NavItem = {
 };
 
 const navList: NavItem[] = [
-  { name: "Home", link: "#home" },
-  { name: "Menu", link: "#menu" },
-  { name: "About", link: "#about" },
-  { name: "Contact", link: "#contact" },
+  { name: "Home", link: "/" },
+  { name: "Menu", link: "/menu" },
+  { name: "About", link: "/about" },
 ];
 
 const Navbar = () => {
@@ -64,7 +63,7 @@ const Navbar = () => {
   }, []);
 
   // Animation variants for popup menu (GPU accelerated)
-  const popupVariants = {
+  const popupVariants: Variants = {
     hidden: {
       opacity: 0,
       scale: 0.85,
@@ -90,7 +89,7 @@ const Navbar = () => {
     },
   };
 
-  const backdropVariants = {
+  const backdropVariants: Variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { duration: 0.2 } },
     exit: { opacity: 0, transition: { duration: 0.2 } },
