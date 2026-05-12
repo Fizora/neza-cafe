@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -210,7 +210,7 @@ const allMenuItems: MenuItem[] = [
 
 const categories = ["All", "Coffee", "Tea", "Beverage", "Food"];
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -221,7 +221,7 @@ const containerVariants = {
   },
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
@@ -380,7 +380,7 @@ export default function MenuPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="relative px-4 sm:px-6 lg:px-8 py-24 md:py-32 overflow-hidden bg-gradient-to-b from-white to-gray-50">
+        <section className="relative px-4 sm:px-6 lg:px-8 py-24 md:py-32 overflow-hidden bg-linear-to-b from-white to-gray-50">
           {/* Floating decorative elements */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
             {/* Floating cards/rectangles */}
@@ -411,12 +411,12 @@ export default function MenuPage() {
             <motion.div
               animate={{ opacity: [0.2, 0.5, 0.2] }}
               transition={{ duration: 4, repeat: Infinity }}
-              className="absolute top-1/3 left-1/4 w-40 h-px bg-gradient-to-r from-slate-300 to-transparent opacity-30"
+              className="absolute top-1/3 left-1/4 w-40 h-px bg-linear-to-r from-slate-300 to-transparent opacity-30"
             />
             <motion.div
               animate={{ opacity: [0.3, 0.6, 0.3] }}
               transition={{ duration: 5, repeat: Infinity, delay: 1 }}
-              className="absolute bottom-1/4 right-1/3 w-32 h-px bg-gradient-to-l from-gray-300 to-transparent opacity-30"
+              className="absolute bottom-1/4 right-1/3 w-32 h-px bg-linear-to-l from-gray-300 to-transparent opacity-30"
             />
 
             {/* Floating blurred shapes */}
@@ -477,7 +477,7 @@ export default function MenuPage() {
                 whileInView={{ scaleX: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2, duration: 0.8 }}
-                className="h-1 w-16 bg-gradient-to-r from-slate-400 to-gray-400 mx-auto mb-8 origin-center"
+                className="h-1 w-16 bg-linear-to-r from-slate-400 to-gray-400 mx-auto mb-8 origin-center"
               />
 
               {/* Description */}
