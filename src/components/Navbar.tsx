@@ -98,7 +98,7 @@ const Navbar = () => {
   return (
     <>
       <header className="fixed top-0 left-0 z-100 w-full p-2">
-        <div className="mx-auto max-w-5xl flex items-center justify-between py-2 px-4 bg-white shadow-lg shadow-slate-200/80 rounded-full backdrop-blur-sm  border border-white/20">
+        <div className="mx-auto max-w-6xl flex items-center justify-between py-2 px-4 bg-white shadow-lg shadow-slate-200/80 rounded-full backdrop-blur-sm  border border-white/20">
           {/* Menu Button - always visible */}
           <div>
             <button

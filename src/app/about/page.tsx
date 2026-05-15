@@ -1,359 +1,244 @@
 "use client";
 
-import { motion, Variants } from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
-import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import {
-  LuSearch,
   LuCoffee,
-  LuLeaf,
-  LuMilk,
-  LuCake,
-  LuChevronLeft,
-  LuChevronRight,
+  LuUsers,
+  LuHeart,
+  LuClock,
+  LuMapPin,
+  LuPhone,
 } from "react-icons/lu";
 
-const categories = [
-  { id: "all", name: "All", icon: LuCoffee },
-  { id: "coffee", name: "Coffee", icon: LuCoffee },
-  { id: "matcha", name: "Matcha", icon: LuLeaf },
-  { id: "milkshake", name: "Milkshake", icon: LuMilk },
-  { id: "dessert", name: "Dessert", icon: LuCake },
-];
-
-const menuItems = [
-  {
-    id: 1,
-    name: "Espresso Shot",
-    description:
-      "Bold and intense single-origin espresso with notes of dark chocolate.",
-    price: "Rp 25.000",
-    category: "coffee",
-    image: "/images/espresso.png",
-    popular: true,
-  },
-  {
-    id: 2,
-    name: "Caramel Latte",
-    description: "Smooth espresso with steamed milk and rich caramel sauce.",
-    price: "Rp 35.000",
-    category: "coffee",
-    image: "/images/caramel.png",
-    popular: true,
-  },
-  {
-    id: 3,
-    name: "Matcha Latte",
-    description: "Ceremonial grade matcha blended with creamy oat milk.",
-    price: "Rp 38.000",
-    category: "matcha",
-    image: "/images/matcha.png",
-    popular: true,
-  },
-  {
-    id: 4,
-    name: "Matcha Frappe",
-    description: "Iced matcha blended with milk and topped with whipped cream.",
-    price: "Rp 42.000",
-    category: "matcha",
-    image: "/images/matcha.png",
-    popular: false,
-  },
-  {
-    id: 5,
-    name: "Chocolate Milkshake",
-    description: "Thick, creamy milkshake with rich chocolate flavor.",
-    price: "Rp 40.000",
-    category: "milkshake",
-    image: "/images/milkshake.png",
-    popular: false,
-  },
-  {
-    id: 6,
-    name: "Strawberry Milkshake",
-    description: "Sweet and refreshing strawberry milkshake.",
-    price: "Rp 40.000",
-    category: "milkshake",
-    image: "/images/milkshake.png",
-    popular: false,
-  },
-  {
-    id: 7,
-    name: "Cheesecake",
-    description: "Creamy New York style cheesecake with berry compote.",
-    price: "Rp 35.000",
-    category: "dessert",
-    image: "/images/cheesecake.png",
-    popular: true,
-  },
-  {
-    id: 8,
-    name: "Chocolate Croissant",
-    description: "Flaky buttery croissant filled with premium dark chocolate.",
-    price: "Rp 28.000",
-    category: "dessert",
-    image: "/images/croissant.png",
-    popular: false,
-  },
-];
-
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2,
-    },
-  },
-};
-
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-      ease: "easeOut" as const,
-    },
-  },
-};
-
-export default function MenuPage() {
-  const [activeCategory, setActiveCategory] = useState("all");
-  const [searchQuery, setSearchQuery] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 6;
-
-  const filteredItems = menuItems.filter((item) => {
-    const matchesCategory =
-      activeCategory === "all" || item.category === activeCategory;
-    const matchesSearch =
-      item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.description.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCategory && matchesSearch;
-  });
-
-  const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
-  const paginatedItems = filteredItems.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage,
-  );
-
-  const handleCategoryChange = (categoryId: string) => {
-    setActiveCategory(categoryId);
-    setCurrentPage(1);
-  };
-
+export default function AboutPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-linear-to-b from-white to-gray-50 pt-24 md:pt-32">
+      <main className="min-h-screen bg-white pt-24 md:pt-32">
         {/* Hero Section */}
-        <section className="relative px-4 sm:px-6 lg:px-8 pb-12 md:pb-16">
-          <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            <div className="absolute -top-40 -right-40 w-80 h-80 rounded-full bg-amber-100/30 blur-3xl" />
-            <div className="absolute -bottom-20 -left-40 w-96 h-96 rounded-full bg-emerald-100/20 blur-3xl" />
-          </div>
+        <section className="relative px-4 sm:px-6 lg:px-8 pb-16 md:pb-20 overflow-hidden">
+          <div className="absolute inset-0 bg-linear-to-b from-gray-50/40 to-white -z-10" />
+          <div className="absolute top-20 right-10 w-64 h-64 rounded-full bg-gray-100/30 blur-3xl -z-10" />
 
-          <div className="relative z-10 mx-auto max-w-4xl text-center">
+          <div className="mx-auto max-w-5xl text-center">
+            <motion.span
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="inline-block text-gray-500 font-mono text-sm tracking-wider mb-3"
+            >
+              — OUR STORY —
+            </motion.span>
             <motion.h1
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-5xl sm:text-6xl md:text-7xl font-bold text-gray-900 mb-6 font-mono"
+              className="text-5xl sm:text-6xl md:text-7xl font-bold text-gray-900 mb-4"
             >
-              Our Menu
+              More Than <span className="text-black">Coffee</span>
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed"
+              className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed"
             >
-              Crafted with passion, served with love — discover our signature
-              collection of beverages and treats.
+              Neza Cafe was born from a simple belief: great coffee brings
+              people together. Today, we're a sanctuary for dreamers, creators,
+              and coffee lovers.
             </motion.p>
           </div>
         </section>
 
-        {/* Search and Filter */}
-        <section className="relative px-4 sm:px-6 lg:px-8 pb-8">
-          <div className="mx-auto max-w-6xl">
-            <div className="flex flex-col md:flex-row gap-4 items-center justify-between mb-8">
-              {/* Search Bar */}
-              <div className="relative w-full md:w-96">
-                <LuSearch
-                  className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"
-                  size={20}
-                />
-                <input
-                  type="text"
-                  placeholder="Search menu..."
-                  value={searchQuery}
-                  onChange={(e) => {
-                    setSearchQuery(e.target.value);
-                    setCurrentPage(1);
-                  }}
-                  className="w-full pl-12 pr-4 py-3 rounded-full border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-gray-300 transition-all"
-                />
-              </div>
+        {/* Story Section */}
+        <section className="px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+          <div className="mx-auto max-w-5xl">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="space-y-4"
+              >
+                <h2 className="text-3xl font-bold text-gray-900">
+                  The Beginning
+                </h2>
+                <p className="text-gray-600 leading-relaxed">
+                  It started in 2018 — a tiny 200 sq ft space in the heart of
+                  the city, a second-hand espresso machine, and a crazy dream. I
+                  was a corporate worker tired of tasteless coffee and rushed
+                  mornings. So I quit.
+                </p>
+                <p className="text-gray-600 leading-relaxed">
+                  With savings that barely lasted 6 months, I opened Neza Cafe.
+                  The first month, only 3 customers came. But I kept brewing,
+                  kept learning, kept perfecting every single cup. Word spread.
+                  By month six, we had queues around the block.
+                </p>
+                <p className="text-gray-600 leading-relaxed">
+                  Today, we've served over 50,000 cups of joy. But nothing has
+                  changed — I still wake up at 5 AM to roast the beans myself.
+                  Because that's what real passion looks like.
+                </p>
+              </motion.div>
 
-              {/* Category Filter */}
-              <div className="flex flex-wrap gap-2 justify-center">
-                {categories.map((category) => {
-                  const Icon = category.icon;
-                  return (
-                    <button
-                      key={category.id}
-                      onClick={() => handleCategoryChange(category.id)}
-                      className={`flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-200 ${
-                        activeCategory === category.id
-                          ? "bg-gray-900 text-white shadow-lg"
-                          : "bg-white text-gray-600 hover:bg-gray-100 border border-gray-200"
-                      }`}
-                    >
-                      <Icon size={18} />
-                      <span className="text-sm font-medium">
-                        {category.name}
-                      </span>
-                    </button>
-                  );
-                })}
-              </div>
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="relative h-96 rounded-2xl overflow-hidden shadow-xl"
+              >
+                <div className="absolute inset-0 bg-linear-to-t from-gray-900/20 to-transparent z-10" />
+                <Image
+                  src="/images/cafe-interior.jpg"
+                  alt="Neza Cafe interior"
+                  fill
+                  className="object-cover"
+                />
+              </motion.div>
             </div>
           </div>
         </section>
 
-        {/* Menu Grid */}
-        <section className="relative px-4 sm:px-6 lg:px-8 py-8 pb-24">
-          <div className="mx-auto max-w-6xl">
-            {paginatedItems.length === 0 ? (
-              <div className="text-center py-20">
-                <p className="text-gray-500 text-lg">
-                  No items found. Try a different search.
-                </p>
-              </div>
-            ) : (
+        {/* Philosophy & Values */}
+        <section className="bg-gray-50 px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+          <div className="mx-auto max-w-5xl text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+              What Drives Us
+            </h2>
+            <div className="w-20 h-1 bg-black mx-auto rounded-full" />
+            <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
+              Every decision we make is rooted in these principles
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            {[
+              {
+                icon: LuCoffee,
+                title: "Quality Obsession",
+                desc: "We source beans directly from family farms. Freshly roasted, never sitting more than 14 days.",
+              },
+              {
+                icon: LuUsers,
+                title: "Community First",
+                desc: "Our space is designed for connection — free Wi-Fi, power outlets, and cozy corners for everyone.",
+              },
+              {
+                icon: LuHeart,
+                title: "Radical Honesty",
+                desc: "No hidden fees. No overpriced nonsense. Just honest coffee at fair prices.",
+              },
+            ].map((value, idx) => (
               <motion.div
-                variants={containerVariants}
-                initial="hidden"
-                animate="visible"
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition"
               >
-                {paginatedItems.map((item) => (
-                  <motion.div
-                    key={item.id}
-                    variants={itemVariants}
-                    className="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
-                  >
-                    {/* Badge */}
-                    {item.popular && (
-                      <div className="absolute top-4 left-4 z-10 bg-amber-500 text-white text-xs font-bold px-3 py-1 rounded-full">
-                        Popular
-                      </div>
-                    )}
-
-                    {/* Image */}
-                    <div className="relative h-56 overflow-hidden bg-gray-100">
-                      <Image
-                        src={item.image}
-                        alt={item.name}
-                        fill
-                        className="object-cover group-hover:scale-110 transition-transform duration-500"
-                      />
-                    </div>
-
-                    {/* Content */}
-                    <div className="p-6">
-                      <h3 className="text-xl font-bold text-gray-900 mb-2">
-                        {item.name}
-                      </h3>
-                      <p className="text-gray-600 text-sm leading-relaxed mb-4">
-                        {item.description}
-                      </p>
-                      <div className="flex items-center justify-between">
-                        <span className="text-2xl font-bold text-gray-900">
-                          {item.price}
-                        </span>
-                        <button className="px-4 py-2 bg-gray-900 text-white rounded-full text-sm font-semibold hover:bg-black transition-all duration-200 hover:scale-105 active:scale-95">
-                          Order Now
-                        </button>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
+                <value.icon className="w-10 h-10 text-gray-700 mb-4 mx-auto" />
+                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                  {value.title}
+                </h3>
+                <p className="text-gray-600 text-sm">{value.desc}</p>
               </motion.div>
-            )}
-
-            {/* Pagination */}
-            {totalPages > 1 && (
-              <div className="flex justify-center items-center gap-4 mt-12">
-                <button
-                  onClick={() =>
-                    setCurrentPage((prev) => Math.max(prev - 1, 1))
-                  }
-                  disabled={currentPage === 1}
-                  className="p-2 rounded-full bg-white border border-gray-200 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50 transition-all"
-                >
-                  <LuChevronLeft size={20} />
-                </button>
-                <span className="text-gray-600 font-medium">
-                  Page {currentPage} of {totalPages}
-                </span>
-                <button
-                  onClick={() =>
-                    setCurrentPage((prev) => Math.min(prev + 1, totalPages))
-                  }
-                  disabled={currentPage === totalPages}
-                  className="p-2 rounded-full bg-white border border-gray-200 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50 transition-all"
-                >
-                  <LuChevronRight size={20} />
-                </button>
-              </div>
-            )}
+            ))}
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="relative px-4 sm:px-6 lg:px-8 py-24 md:py-32 overflow-hidden bg-linear-to-b from-gray-50 to-white">
-          <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            <motion.div
-              animate={{ y: [0, 20, 0], x: [0, 10, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute top-10 left-10 w-32 h-32 border border-amber-200 rounded-3xl opacity-40"
-            />
-            <motion.div
-              animate={{ y: [0, -20, 0], x: [0, -10, 0] }}
-              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute bottom-20 right-10 w-40 h-40 border-2 border-emerald-200 rounded-full opacity-30"
-            />
+        {/* Team Section */}
+        <section className="px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+          <div className="mx-auto max-w-5xl text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+              Meet the Baristas
+            </h2>
+            <div className="w-20 h-1 bg-black mx-auto rounded-full" />
+            <p className="text-gray-600 mt-4">
+              The passionate humans behind your perfect cup
+            </p>
           </div>
 
-          <div className="relative z-10 mx-auto max-w-3xl text-center">
+          <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+            {[
+              {
+                name: "Alex Rivera",
+                role: "Head Barista & Roaster",
+                desc: "5 years at Specialty Coffee Association championships. He can taste altitude in your beans.",
+                initials: "AR",
+              },
+              {
+                name: "Maya Sari",
+                role: "Pastry Chef",
+                desc: "Former pastry instructor. Creates our beloved croissants and cheesecakes from scratch daily.",
+                initials: "MS",
+              },
+            ].map((person, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                className="flex gap-4 bg-gray-50 p-5 rounded-xl"
+              >
+                <div className="w-14 h-14 rounded-full bg-gray-200 flex items-center justify-center text-gray-700 font-bold text-lg">
+                  {person.initials}
+                </div>
+                <div>
+                  <h3 className="font-bold text-gray-900">{person.name}</h3>
+                  <p className="text-gray-600 text-sm">{person.role}</p>
+                  <p className="text-gray-500 text-sm mt-1">{person.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        {/* CTA Visit Us */}
+        <section className="bg-linear-to-b from-gray-900 to-gray-800 text-white px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+          <div className="mx-auto max-w-4xl text-center">
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
+              className="space-y-6"
             >
-              <h2 className="text-5xl sm:text-6xl font-bold text-gray-900 mb-6 font-mono">
-                Can't decide?
+              <LuCoffee className="w-12 h-12 text-gray-300 mx-auto" />
+              <h2 className="text-3xl md:text-4xl font-bold">
+                Experience the Neza Difference
               </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-10 leading-relaxed">
-                Let our baristas recommend the perfect drink for your mood.
-                Visit us today and experience the Neza Cafe difference.
+              <p className="text-gray-300 max-w-xl mx-auto">
+                Whether you need a morning pick-me-up, a quiet place to work, or
+                a spot to catch up with friends — we're here.
               </p>
-              <motion.button
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                className="px-10 py-4 bg-gray-900 text-white font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-black"
-              >
-                Visit Our Cafe
-              </motion.button>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+                <div className="flex items-center justify-center gap-2 text-sm">
+                  <LuMapPin size={18} className="text-gray-400" />
+                  <span>123 Coffee Lane, Jakarta</span>
+                </div>
+                <div className="flex items-center justify-center gap-2 text-sm">
+                  <LuClock size={18} className="text-gray-400" />
+                  <span>Mon–Sun: 8 AM – 10 PM</span>
+                </div>
+                <div className="flex items-center justify-center gap-2 text-sm">
+                  <LuPhone size={18} className="text-gray-400" />
+                  <span>+62 812 3456 7890</span>
+                </div>
+              </div>
+              <div className="pt-6">
+                <a
+                  href="/menu"
+                  className="inline-block px-8 py-3 bg-white text-gray-900 font-semibold rounded-full hover:bg-gray-100 transition shadow-lg"
+                >
+                  Explore Our Menu
+                </a>
+              </div>
             </motion.div>
           </div>
         </section>

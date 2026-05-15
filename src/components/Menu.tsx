@@ -2,6 +2,7 @@
 
 import { motion, Variants } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { LuArrowUpRight } from "react-icons/lu";
 
 type MenuItem = {
@@ -154,10 +155,13 @@ const Menu = () => {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="text-center mt-12"
         >
-          <button className="inline-flex items-center gap-2 px-8 py-4 bg-gray-900 text-white font-semibold rounded-full hover:bg-gray-800 transition-all duration-300 hover:scale-105 active:scale-95">
+          <Link
+            href="/menu"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-gray-900 text-white font-semibold rounded-full hover:bg-gray-800 transition-all duration-300 hover:scale-105 active:scale-95"
+          >
             View Full Menu
             <LuArrowUpRight size={20} />
-          </button>
+          </Link>
         </motion.div>
       </div>
     </section>

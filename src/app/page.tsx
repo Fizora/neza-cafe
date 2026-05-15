@@ -1,8 +1,8 @@
 import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
-import Menu from "@/components/Menu";
 import Footer from "@/components/Footer";
 import type { Metadata } from "next";
+import Menu from "@/components/Menu";
 
 export const metadata: Metadata = {
   title: "Neza Cafe - Premium Coffee & Beverages",
